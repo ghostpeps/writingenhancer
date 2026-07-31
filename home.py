@@ -26,7 +26,7 @@ with st.sidebar:
         if total_seconds > 0:
             hours = total_seconds // 3600
             minutes = (total_seconds % 3600) // 60
-            st.metric(label="You have ", value=f"{hours}:{minutes} until you are automatically logged out.")
+            st.metric(label="Time until automatically logged out:", value=f"{hours}:{minutes}".)
         else:
             st.error("Session expired! Refreshing...")
         
