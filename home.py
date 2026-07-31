@@ -1,15 +1,15 @@
 import streamlit as st
 
-st.title("Main Dashboard")
+st.title("Home")
 
 if st.user.is_logged_in:
-    st.success(f"Logged in via Google as: {st.user.name} ({st.user.email})")
+    st.write(f"Welcome {st.user.name}\nEmail: {st.user.email}")
 else:
-    st.info("Browsing in Guest Mode (Practice)")
+    st.info("Logged in without an account")
 
 st.write("Welcome to your regular home page content!")
 
-if st.button("Exit / Log Out"):
+if st.button("Log out", icon=":material/log_out:"):
     if st.user.is_logged_in:
         st.logout()
     else:
