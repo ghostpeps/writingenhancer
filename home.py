@@ -15,7 +15,6 @@ if st.button("Log out", icon=":material/logout:"):
         st.rerun()
 
 with st.sidebar:
-    st.write("---")
 
     if st.session_state.get("guest_mode"):
         login_string = st.session_state.guest_login_time.strftime("%I:%M %p")
