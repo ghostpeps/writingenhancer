@@ -10,6 +10,8 @@ with col1:
         st.login()
 
 with col2:
+    guestbtn = st.button("Practice without an account"
+    st.write("Note that by clicking this button you will be automatically logged out within 24 hours")
     if st.button("Practice without an account", use_container_width=True):
         st.session_state.guest_mode = True
         st.rerun()
