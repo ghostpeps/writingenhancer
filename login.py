@@ -14,4 +14,5 @@ with col2:
     st.caption("Note that by clicking this button you will be automatically logged out within 24 hours")
     if guestbtn:
         st.session_state.guest_mode = True
+        st.session_state.guest_login_time = datetime.now()
         st.rerun()
