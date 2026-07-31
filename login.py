@@ -1,7 +1,7 @@
 import streamlit as st
 
-st.title("Welcome to the App")
-st.write("Please log in or continue as a guest to access the dashboard.")
+st.title("Welcome to the English Tutor")
+st.write("Please log in or continue without an account to access the tutor.")
 
 col1, col2 = st.columns(2)
 
