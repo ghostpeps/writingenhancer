@@ -7,12 +7,19 @@ if not st.user.is_logged_in:
 
 
 with st.sidebar:
-    if st.session_state.get("guest_mode"):
-        end_time = st.session_state.guest_login_time + timedelta(hours=24)
-        end_string = end_time.strftime("%b %d, at %I:%M %p")
-      
-        login_string = st.session_state.guest_login_time.strftime("%I:%M %p")
-        st.caption(f"Guest session started at {login_string}. You have until {end_string} before you get logged out.")
+    if st.session_state.get("guest_mode") and st.session_state.get("guest_login_time"):
+        start_time = st.session_state.guest_login_time
+        expiration_time = start_time + timedelta(hours=24)
+        current_time = datetime.now()
+        time_left = expiration_time - current_time
+        total_seconds = int(time_left.total_seconds())
+        
+        if total_seconds > 0:
+            hours = total_seconds // 3600
+            minutes = (total_seconds % 3600) // 60
+            st.metric(label="You have ", value=f"{hours}:{minutes} until you are automatically logged out.")
+        else:
+            st.error("Session expired! Refreshing...")
         
     if st.button("Log Out", icon=":material/logout:", use_container_width=True):
         st.session_state.guest_mode = False
