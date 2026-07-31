@@ -1,21 +1,22 @@
 import streamlit as st
-from datetime import date
+from datetime import datetime
 
 if "guest_mode" not in st.session_state:
     st.session_state.guest_mode = False
 
-if "guest_login_date" not in st.session_state:
-    st.session_state.guest_login_date = None
+if "guest_login_time" not in st.session_state:
+    st.session_state.guest_login_time = None
 
-if st.session_state.guest_mode and st.session_state.guest_login_date:
-    if date.today() > st.session_state.guest_login_date:
-        st.session_state.guest_mode = False
-        st.session_state.guest_login_date = None
+def manual_logout():
+    st.session_state.guest_mode = False
+    st.session_state.guest_login_time = None
+    if st.user.is_logged_in:
+        st.logout()
+    else:
         st.rerun()
-
-if "guest_mode" not in st.session_state:
-    st.session_state.guest_mode = False
-
+if st.session_state.guest_mode and st.session_state.guest_login_time:
+    if datetime.now().date() > st.session_state.guest_login_time.date():
+        manual_logout()
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
