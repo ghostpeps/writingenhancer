@@ -7,8 +7,6 @@ if st.user.is_logged_in:
 else:
     st.info("Logged in without an account")
 
-st.write("Welcome to your regular home page content!")
-
 if st.button("Log out", icon=":material/logout:"):
     if st.user.is_logged_in:
         st.logout()
