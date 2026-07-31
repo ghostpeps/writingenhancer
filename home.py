@@ -9,7 +9,7 @@ else:
 
 st.write("Welcome to your regular home page content!")
 
-if st.button("Log out", icon=":material/log_out:"):
+if st.button("Log out", icon=":material/logout:"):
     if st.user.is_logged_in:
         st.logout()
     else:
