@@ -18,7 +18,7 @@ if st.button("Log out", icon=":material/logout:"):
 with st.sidebar:
     if st.session_state.get("guest_mode"):
         end_time = st.session_state.guest_login_time + timedelta(hours=24)
-        end_string = end_time.strftime("%b/%d, at %I:%M %p")
+        end_string = end_time.strftime("%b %d, at %I:%M %p")
       
         login_string = st.session_state.guest_login_time.strftime("%I:%M %p")
         st.caption(f"Guest session started at {login_string}. You have until {end_string} before you get logged out.")
