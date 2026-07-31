@@ -6,7 +6,7 @@ if "guest_mode" not in st.session_state:
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
-        st.Page("analytics.py", title="Analytics", icon=":material/bar_chart:")
+        st.Page("data.py", title="Data", icon=":material/bar_chart:")
     ]
 else:
     pages = [
