@@ -18,5 +18,5 @@ if not st.user.is_logged_in or st.session_state.guest_mode:
             st.rerun()
 else:
     grade = st.selectbox("Please choose your grade:", ("1", "2", "3", "4", "5", "6"), None)
-    if logged_in = st.button("Submit", ":material/send:"):
+    if st.button("Submit", ":material/send:"):
         st.session_state.selected_grade = True
