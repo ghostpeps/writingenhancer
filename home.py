@@ -26,7 +26,15 @@ with col2:
 if st.user.is_logged_in:
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
-        st.markdown("<div style='text-align: center;'>:material/mode_heat: 0</div>", unsafe_allow_html=True) #add one to streak every time submit button is clicked in test. add html to make streak logo and text. save to file
+        icon_style = '<link href="https://googleapis.com" rel="stylesheet">'
+        html_markup = f"""
+    {icon_style}
+    <div style='text-align: center; display: flex; align-items: center; justify-content: center; gap: 5px;'>
+        <span class="material-icons" style="font-size: 24px; vertical-align: middle;">mode_heat</span>
+        <span style="font-size: 18px; font-weight: bold; vertical-align: middle;">0</span>
+    </div>
+    """
+        st.markdown(html_markup, unsafe_allow_html=True) #add one to streak every time submit button is clicked in test. add html to make streak logo and text. save to file
     with s2:
         @st.dialog("Test Score", dismissible=True)
         def show_popup_message(message_text):
