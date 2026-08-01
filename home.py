@@ -6,8 +6,16 @@ st.title("Home")
 if st.user.is_logged_in:
     st.write(f"Welcome {st.user.name}\nEmail: {st.user.email}")
 else:
-    st.info("Logged in without an account")
+    st.write("Logged in without an account")
 
+st.subtitle("Tests:")
+if not st.session_state.selected_grade:
+    grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
+    if grade:
+        st.session_state.selected_grade = True
+        st.rerun()
+elif st.session_state.selected_grade:
+    st.write("Tests will be here")
 if st.button("Log out", icon=":material/logout:"):
     if st.user.is_logged_in:
         st.logout()
