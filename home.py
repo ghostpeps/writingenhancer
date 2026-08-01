@@ -27,7 +27,7 @@ with col2:
         if grade:
             with open(f"{st.user.email}.txt", "rb+") as f:
                 f.seek(4, 0)
-                x = f" {grade}"
+                x = f"{grade}"
                 f.write(x.encode("utf-8"))
         st.write("Tests will be here")
         with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
