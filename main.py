@@ -34,10 +34,10 @@ else:
     pages = [
         st.Page("login.py", title="Login", icon=":material/login:", default=True)
     ]
+pg = st.navigation(pages)
+pg.run()
 if st.user.is_logged_in:
     user_info = dict(st.user)
     user_picture = user_info.get("picture")
     if user_picture:
         st.sidebar.image(user_picture, width=80) 
-pg = st.navigation(pages)
-pg.run()
