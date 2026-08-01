@@ -25,8 +25,10 @@ if st.session_state.guest_mode and st.session_state.guest_login_time:
     if datetime.now() > (st.session_state.guest_login_time + timedelta(hours=24)):
         manual_logout()
 if st.user.is_logged_in:
-    if hasattr(st.user, "picture"):
-        st.image(st.user.picture, width=100)
+    user_info = dict(st.user)
+    user_picture = user_info.get("picture")
+    if user_picture:
+        st.html(f'<img src="{user_picture}" style="border-radius:50%; width:80px;" referrerpolicy="no-referrer">')
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
