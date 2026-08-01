@@ -10,6 +10,9 @@ if "guest_login_time" not in st.session_state:
 if "selected_grade" not in st.session_state:
     st.session_state.selected_grade = False
 
+if "testing" not in st.session_state:
+    st.session_state.testing = False
+
 if st.user.is_logged_in and not st.session_state.get("guest_mode") and "google_run" not in st.session_state:
     st.session_state.google_run = True
     st.rerun()
@@ -29,6 +32,10 @@ if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
         st.Page("data.py", title="Data", icon=":material/bar_chart:")
+    ]
+elif st.session_state.testing:
+    pages = [
+        st.Page("testing.py", title="Test", icon=":material/assignment:", default=True)
     ]
 elif not st.user.is_logged_in or not st.session_state.guest_mode:
     pages = [
