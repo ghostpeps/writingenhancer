@@ -22,7 +22,12 @@ with col2:
             st.rerun()
     elif st.session_state.selected_grade:
         st.write("Tests will be here")
-
+        
+if st.user.is_logged_in:
+    user_info = dict(st.user)
+    user_picture = user_info.get("picture")
+    if user_picture:
+        st.sidebar.image(user_picture, width=80) 
 if st.user.is_logged_in:
     s1, s2 = st.columns(2)
     with s1:
