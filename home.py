@@ -15,8 +15,11 @@ with col1:
 
 with col2:
     st.title("Tests")
-    with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
-        y = f.read(1)
+    try:
+        with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
+            y = f.read(1)
+    except FileNotFoundError:
+        y = None
     if y != "G":
         grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
         if grade:
