@@ -37,12 +37,12 @@ with col2:
             with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
                 st.write(f.read())
     else:
-        if not in (1, 2, 3, 4, 5, 6):
+        if st.session_state.selected_grade not in (1, 2, 3, 4, 5, 6):
             grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
             if grade:
                 st.session_state.selected_grade = int(grade)
                 st.rerun()
-        elif in (1, 2, 3, 4, 5, 6):
+        elif st.session_state.selected_grade in (1, 2, 3, 4, 5, 6):
             grade = st.selectbox("Change Grade", ("1", "2", "3", "4", "5", "6"), None)
             if grade:
                 st.session_state.selected_grade = int(grade)
