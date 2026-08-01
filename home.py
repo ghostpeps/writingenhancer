@@ -1,21 +1,25 @@
 import streamlit as st
 from datetime import datetime, timedelta
 
-st.title("Home")
+col1, col2 = st.columns(2)
 
-if st.user.is_logged_in:
-    st.write(f"Welcome {st.user.name}\nEmail: {st.user.email}")
-else:
-    st.write("Logged in without an account")
+with col1:
+    st.title("Home")
+    
+    if st.user.is_logged_in:
+        st.write(f"Welcome {st.user.name}\nEmail: {st.user.email}")
+    else:
+        st.write("Logged in without an account")
 
-st.header("Tests:")
-if not st.session_state.selected_grade:
-    grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
-    if grade:
-        st.session_state.selected_grade = True
-        st.rerun()
-elif st.session_state.selected_grade:
-    st.write("Tests will be here")
+with col2:
+    st.title("Tests")
+    if not st.session_state.selected_grade:
+        grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
+        if grade:
+            st.session_state.selected_grade = True
+            st.rerun()
+    elif st.session_state.selected_grade:
+        st.write("Tests will be here")
     
 with st.sidebar:
     if st.session_state.get("guest_mode") and st.session_state.get("guest_login_time"):
