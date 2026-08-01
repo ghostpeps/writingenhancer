@@ -15,28 +15,38 @@ with col1:
 
 with col2:
     st.title("Tests")
-    try:
-        with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
-            y = f.read(1)
-    except FileNotFoundError:
-        y = None
-    if y != "G":
-        grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
-        if grade:
-            with open(f"{st.user.email}.txt", "a", encoding="utf-8") as f:
-                f.write(f"Grade {grade}")
-            st.session_state.selected_grade = True
-            st.rerun()
-    elif y == "G":
-        grade = st.selectbox("Change Grade", ("1", "2", "3", "4", "5", "6"), None)
-        if grade:
-            with open(f"{st.user.email}.txt", "rb+") as f:
-                f.seek(6, 0)
-                x = f"{grade}"
-                f.write(x.encode("utf-8"))
-        st.write("Tests will be here")
-        with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
-            st.write(f.read())
+    if st.user.is_logged_in:
+        try:
+            with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
+                y = f.read(1)
+        except FileNotFoundError:
+            y = None
+        if y != "G":
+            grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
+            if grade:
+                with open(f"{st.user.email}.txt", "a", encoding="utf-8") as f:
+                    f.write(f"Grade {grade}")
+        elif y == "G":
+            grade = st.selectbox("Change Grade", ("1", "2", "3", "4", "5", "6"), None)
+            if grade:
+                with open(f"{st.user.email}.txt", "rb+") as f:
+                    f.seek(6, 0)
+                    x = f"{grade}"
+                    f.write(x.encode("utf-8"))
+            st.write("Tests will be here")
+            with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
+                st.write(f.read())
+    else:
+        if not in (1, 2, 3, 4, 5, 6):
+            grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
+            if grade:
+                st.session_state.selected_grade = int(grade)
+                st.rerun()
+        elif in (1, 2, 3, 4, 5, 6):
+            grade = st.selectbox("Change Grade", ("1", "2", "3", "4", "5", "6"), None)
+            if grade:
+                st.session_state.selected_grade = int(grade)
+                st.rerun()
 if st.user.is_logged_in:
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
