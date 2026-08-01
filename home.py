@@ -24,11 +24,6 @@ with col2:
         st.write("Tests will be here")
         
 if st.user.is_logged_in:
-    user_info = dict(st.user)
-    user_picture = user_info.get("picture")
-    if user_picture:
-        st.sidebar.image(user_picture, width=80) 
-if st.user.is_logged_in:
     s1, s2 = st.columns(2)
     with s1:
         st.sidebar.markdown(":material/mode_heat: 0") #add one to streak every time submit button is clicked in test. add html to make streak logo and text. save to file
