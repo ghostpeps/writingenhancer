@@ -1,7 +1,6 @@
 import streamlit as st
 from datetime import datetime, timedelta
 import pytz
-from login import logged_in
 
 if "guest_mode" not in st.session_state:
     st.session_state.guest_mode = False
@@ -19,7 +18,7 @@ def manual_logout():
 if st.session_state.guest_mode and st.session_state.guest_login_time:
     if datetime.now() > (st.session_state.guest_login_time + timedelta(hours=24)):
         manual_logout()
-if st.user.is_logged_in or st.session_state.guest_mode and logged_in:
+if st.user.is_logged_in or st.session_state.guest_mode and st.session_state.selected_grade:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
         st.Page("data.py", title="Data", icon=":material/bar_chart:")
