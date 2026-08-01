@@ -1,9 +1,11 @@
 import streamlit as st
 from datetime import datetime, timedelta
 
-st.title("App Features")
+st.title("Test Data")
 if not st.user.is_logged_in:
-  st.write("You have until  until this page refreshes.")
+  st.write("View test data from today, including areas to improve, here.")
+else:
+  st.write("View test data, including tests and areas to improve, here.")
 
 
 with st.sidebar:
