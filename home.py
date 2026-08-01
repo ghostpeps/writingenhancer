@@ -23,6 +23,12 @@ with col2:
             st.session_state.selected_grade = True
             st.rerun()
     elif st.session_state.selected_grade:
+        grade = st.selectbox("Change Grade", ("1", "2", "3", "4", "5", "6"), None)
+        if grade:
+            with open(f"{st.user.email}.txt", "rb+") as f:
+                f.seek(5, 0)
+                x = f" [{grade}] "
+                f.write(x.encode("utf-8"))
         st.write("Tests will be here")
         with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
             st.write(f.read())
