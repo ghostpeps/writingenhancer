@@ -8,7 +8,7 @@ if st.user.is_logged_in:
 else:
     st.write("Logged in without an account")
 
-st.subtitle("Tests:")
+st.header("Tests:")
 if not st.session_state.selected_grade:
     grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
     if grade:
