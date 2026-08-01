@@ -7,7 +7,8 @@ with col1:
     st.title("Home")
     
     if st.user.is_logged_in:
-        st.write(f"Welcome, {st.user.name}\n Email: {st.user.email}")
+        st.write(f"Welcome, {st.user.name}")
+        st.write(f"Email: {st.user.email}")
     else:
         st.write("Logged in without an account")
 
