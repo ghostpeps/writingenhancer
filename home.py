@@ -16,13 +16,7 @@ if not st.session_state.selected_grade:
         st.rerun()
 elif st.session_state.selected_grade:
     st.write("Tests will be here")
-if st.button("Log out", icon=":material/logout:"):
-    if st.user.is_logged_in:
-        st.logout()
-    else:
-        st.session_state.guest_mode = False
-        st.rerun()
-
+    
 with st.sidebar:
     if st.session_state.get("guest_mode") and st.session_state.get("guest_login_time"):
         start_time = st.session_state.guest_login_time
