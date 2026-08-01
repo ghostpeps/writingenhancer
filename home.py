@@ -9,6 +9,7 @@ with col1:
     if st.user.is_logged_in:
         st.write(f"Welcome, {st.user.name}")
         st.write(f"Email: {st.user.email}")
+        st.write(dict(st.user))
     else:
         st.write("Logged in without an account")
 
