@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 
 st.title("Test Data")
 if not st.user.is_logged_in:
-  st.write("View test data from today, including areas to improve, here.")
+  st.write("View test data from today, including areas to improve on, here.")
 else:
-  st.write("View test data, including tests and areas to improve, here.")
+  st.write("View test data, including tests and areas to improve on, here.")
 
 
 with st.sidebar:
