@@ -26,7 +26,7 @@ with col2:
 if st.user.is_logged_in:
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
-        icon_style = '<link href="https://googleapis.com" rel="stylesheet">'
+        icon_style = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mode_heat" />'
         html_markup = f"""
     {icon_style}
     <div style='text-align: center; display: flex; align-items: center; justify-content: center; gap: 5px;'>
