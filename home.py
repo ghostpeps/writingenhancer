@@ -18,10 +18,10 @@ with col2:
     if not st.session_state.selected_grade:
         grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
         if grade:
-            st.session_state.selected_grade = True
-            st.rerun()
             with open(f"{st.user.email}.txt", "a", encoding="utf-8") as f:
                 f.write(f"Grade: {grade}")
+            st.session_state.selected_grade = True
+            st.rerun()
     elif st.session_state.selected_grade:
         st.write("Tests will be here")
         with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
