@@ -1,6 +1,5 @@
 import streamlit as st
 from datetime import datetime, timedelta
-import pytz
 
 if "guest_mode" not in st.session_state:
     st.session_state.guest_mode = False
