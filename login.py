@@ -20,3 +20,4 @@ else:
     grade = st.selectbox("Please choose your grade:", ("1", "2", "3", "4", "5", "6"), None)
     if st.button("Submit", ":material/send:"):
         st.session_state.selected_grade = True
+        st.rerun()
