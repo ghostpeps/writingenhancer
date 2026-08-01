@@ -8,6 +8,9 @@ if "guest_mode" not in st.session_state:
 if "guest_login_time" not in st.session_state:
     st.session_state.guest_login_time = None
 
+if "selected_grade" not in st.session_state:
+    st.session_state.user_score = False
+
 def manual_logout():
     st.session_state.guest_mode = False
     st.session_state.guest_login_time = None
