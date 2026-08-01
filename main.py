@@ -36,8 +36,3 @@ else:
     ]
 pg = st.navigation(pages)
 pg.run()
-if st.user.is_logged_in:
-    user_info = dict(st.user)
-    user_picture = user_info.get("picture")
-    if user_picture:
-        st.sidebar.image(user_picture, width=80) 
