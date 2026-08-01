@@ -30,7 +30,7 @@ if st.user.is_logged_in or st.session_state.guest_mode:
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
         st.Page("data.py", title="Data", icon=":material/bar_chart:")
     ]
-elif not st.user.is_logged_in or not st.session_state.guest_mode
+elif not st.user.is_logged_in or not st.session_state.guest_mode:
     pages = [
         st.Page("login.py", title="Login", icon=":material/login:", default=True)
     ]
