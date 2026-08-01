@@ -20,9 +20,12 @@ with col2:
         if grade:
             st.session_state.selected_grade = True
             st.rerun()
+            with open(f"{st.user.email}.txt", "a", encoding="utf-8") as f:
+                f.write(f"Grade: {grade}")
     elif st.session_state.selected_grade:
         st.write("Tests will be here")
-        
+        with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
+            st.write(f.read())
 if st.user.is_logged_in:
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
