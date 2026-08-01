@@ -10,6 +10,10 @@ if "guest_login_time" not in st.session_state:
 if "selected_grade" not in st.session_state:
     st.session_state.selected_grade = False
 
+if st.user.is_logged_in and not st.session_state.get("guest_mode") and "google_run" not in st.session_state:
+    st.session_state.google_run = True
+    st.rerun()
+
 def manual_logout():
     st.session_state.guest_mode = False
     st.session_state.guest_login_time = None
