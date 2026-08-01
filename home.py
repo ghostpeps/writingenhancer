@@ -19,7 +19,7 @@ with col2:
         grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
         if grade:
             with open(f"{st.user.email}.txt", "a", encoding="utf-8") as f:
-                f.write(f"Grade: {grade}")
+                f.write(f"Grade {grade}")
             st.session_state.selected_grade = True
             st.rerun()
     elif st.session_state.selected_grade:
