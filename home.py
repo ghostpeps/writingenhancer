@@ -32,7 +32,7 @@ if st.user.is_logged_in:
         def show_popup_message(message_text):
             st.write(message_text)
         if st.button("0", type="tertiary", use_container_width=True): #save to file. make sure to add/subtract to/from score
-            show_popup_message("The test score is used to define your overall improvements. The more positive feedback you receive, the higher your score goes, and the more negative feedback you receive, the lower your score goes. Your streak also affects your test score. If your streak is higher, your score will increase faster, while reducing the amount you decrease when given negative feedback. Complete a test every day (including diagnostics) to increase your streak. If you forget to test one day, your streak restarts at 0.")
+            show_popup_message("The test score is used to define your overall improvements. The more positive feedback you receive, the higher your score goes, and the more negative feedback you receive, the lower your score goes. Your streak also affects your test score. If your streak is higher, your score will increase faster, while reducing the amount you decrease when given negative feedback. Complete a test every day (including diagnostics) to increase your streak. If you forget to test for just one day, your streak restarts at 0.")
 with st.sidebar:
     if st.session_state.get("guest_mode") and st.session_state.get("guest_login_time"):
         start_time = st.session_state.guest_login_time
