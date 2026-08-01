@@ -17,14 +17,14 @@ with col2:
     st.title("Tests")
     with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
         y = f.read(1)
-    if y != G:
+    if y != "G":
         grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
         if grade:
             with open(f"{st.user.email}.txt", "a", encoding="utf-8") as f:
                 f.write(f"Grade {grade}")
             st.session_state.selected_grade = True
             st.rerun()
-    elif y == G:
+    elif y == "G":
         grade = st.selectbox("Change Grade", ("1", "2", "3", "4", "5", "6"), None)
         if grade:
             with open(f"{st.user.email}.txt", "rb+") as f:
