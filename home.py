@@ -22,7 +22,7 @@ with col2:
         st.write("Tests will be here")
 
 if st.user.is_logged_in:
-    s1, s2 = st.colomns(2)
+    s1, s2 = st.columns(2)
     with s1:
         st.sidebar.markdown(":material/mode_heat: Some Number") #add one to streak every time submit button is clicked in test. add html to make streak logo and text. save to file
     with s2:
