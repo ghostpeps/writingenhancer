@@ -28,7 +28,7 @@ if st.user.is_logged_in:
     user_info = dict(st.user)
     user_picture = user_info.get("picture")
     if user_picture:
-        st.sidebar.html(f'<img src="{user_picture}" style="border-radius:50%; width:80px;" referrerpolicy="no-referrer">')
+        st.sidebar.image(user_picture, width=80) 
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
