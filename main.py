@@ -29,7 +29,7 @@ if st.session_state.guest_mode and st.session_state.guest_login_time:
         manual_logout()
 
 if st.user.is_logged_in or st.session_state.guest_mode:
-    user_avatar_url = st.user.get("picture")
+    user_avatar_url = st.user.picture
     if st.user.is_logged_in and user_avatar_url:
         st.logo(user_avatar_url)
     else:
