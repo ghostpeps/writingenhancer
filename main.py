@@ -28,10 +28,10 @@ if st.session_state.guest_mode and st.session_state.guest_login_time:
     if datetime.now() > (st.session_state.guest_login_time + timedelta(hours=24)):
         manual_logout()
 
-if st.user.is_logged_in or st.session_state.guest_mode:
-    user_avatar_url = st.user.picture
+if st.user.is_logged_in:
+    user_avatar = st.user.get("picture") or st.user.get("avatar")
     if st.user.is_logged_in and user_avatar_url:
-        st.logo(user_avatar_url)
+        st.logo(user_avatar)
     else:
         st.logo("https://gstatic.com")
     
