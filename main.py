@@ -33,7 +33,8 @@ if st.user.is_logged_in:
     if not avatar_url:
         fallback_name = st.user.get("name", "User").replace(" ", "+")
         avatar_url = f"https://dicebear.com{fallback_name}"
-    st.image(avatar_url)
+    with st.sidebar:
+        st.image(avatar_url)
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
