@@ -31,7 +31,7 @@ if st.session_state.guest_mode and st.session_state.guest_login_time:
 if st.user.is_logged_in:
     user_avatar_url = st.user.get("picture")
     if st.user.is_logged_in and user_avatar_url:
-        st.logo(user_avatar_url)
+        st.sidebar.logo(user_avatar_url)
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
