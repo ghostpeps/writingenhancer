@@ -54,6 +54,7 @@ with col2:
                     st.rerun()
 if st.user.is_logged_in:
     with st.sidebar:
+        st.json(st.user.to_dict())
         profile_pic = getattr(st.user, "picture", None)
         if profile_pic:
             st.logo(profile_pic)
