@@ -28,7 +28,7 @@ if st.session_state.guest_mode and st.session_state.guest_login_time:
     if datetime.now() > (st.session_state.guest_login_time + timedelta(hours=24)):
         manual_logout()
 
-st.logo("logo.png")
+st.logo("logo.png", link="https://writingtutor.streamlit.app")
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
