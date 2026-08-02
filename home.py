@@ -46,8 +46,8 @@ with col2:
             grade = st.selectbox("Change Grade", ("1", "2", "3", "4", "5", "6"), None)
             if grade:
                 st.session_state.selected_grade = int(grade)
-                st.rerun()
                 st.write("Grade " + str(st.session_state.selected_grade))
+                st.rerun()
 if st.user.is_logged_in:
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
