@@ -48,7 +48,10 @@ with col2:
             if grade:
                 st.session_state.selected_grade = int(grade)
                 st.rerun()
-            st.write("Grade " + str(st.session_state.selected_grade))
+                if int(grade) != st.session_state.selected_grade:
+                    st.session_state.selected_grade = int(grade)
+                    st.write("Grade " + str(st.session_state.selected_grade))
+                    st.rerun()
 if st.user.is_logged_in:
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
