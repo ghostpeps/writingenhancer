@@ -52,12 +52,7 @@ with col2:
                     st.session_state.selected_grade = int(grade)
                     st.write("Grade " + str(st.session_state.selected_grade))
                     st.rerun()
-if st.user.is_logged_in:
-    with st.sidebar:
-        st.json(st.user.to_dict())
-        profile_pic = getattr(st.user, "picture", None)
-        if profile_pic:
-            st.logo(profile_pic)
+
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
         st.markdown(":material/mode_heat: 0") #add one to streak every time submit button is clicked in test. add html to make streak logo and text. save to file
