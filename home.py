@@ -18,15 +18,16 @@ with col2:
     if st.user.is_logged_in:
         try:
             with open(f"{st.user.email}.txt", "r", encoding="utf-8") as f:
-                y = f.read(1)
+                if "G" == f.read(1):
+                    y = True
         except FileNotFoundError:
-            y = None
-        if y != "G":
+            y = False
+        if not y:
             grade = st.selectbox("Please choose your grade to start testing", ("1", "2", "3", "4", "5", "6"), None)
             if grade:
                 with open(f"{st.user.email}.txt", "a", encoding="utf-8") as f:
                     f.write(f"Grade {grade}")
-        elif y == "G":
+        elif y:
             grade = st.selectbox("Change Grade", ("1", "2", "3", "4", "5", "6"), None)
             if grade:
                 with open(f"{st.user.email}.txt", "rb+") as f:
