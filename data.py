@@ -1,7 +1,10 @@
 import streamlit as st
 from datetime import datetime, timedelta
 
-st.title("Test Data")
+if st.user.is_logged_in:
+  st.title(f"{st.user.given_name}'s Test Data")
+else:
+  st.title("Test Data")
 if not st.user.is_logged_in:
   st.write("View test data from today, including areas to improve on, here.")
 else:
