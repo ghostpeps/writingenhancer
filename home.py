@@ -68,7 +68,12 @@ with s2:
     @st.dialog("Test Score", dismissible=True)
         def show_popup_message(message_text):
             st.write(message_text)
-        if st.button("0", type="tertiary", use_container_width=True):
+        with open(f"{st.user.email}score.txt", "r+") as f:
+            f.seek(6)
+            w = int(f.read()) + st.session_state.score
+            f.truncate()
+            f.write(f"{w}")
+        if st.button(f"{w}", type="tertiary", use_container_width=True):
             show_popup_message("The test score is used to define your overall improvements. The more positive feedback you receive, the higher your score goes, and the more negative feedback you receive, the lower your score goes. Your streak also affects your test score. If your streak is higher, your score will increase faster, while reducing the amount you decrease when given negative feedback. Complete a test every day (including diagnostics) to increase your streak. If you forget to test for just one day, your streak restarts at 0.")
 with st.sidebar:
     if st.session_state.get("guest_mode") and st.session_state.get("guest_login_time"):
