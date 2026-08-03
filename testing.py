@@ -6,18 +6,18 @@ def inc_streak():
 def inc_score(x, y, streak, score):
   if x > y:
     if int(streak) == 0:
-      return x - y
+      st.session_state.score =  x - y
     else:
-      return (x - y) * int(streak) / 10
+      st.session_state.score = (x - y) * int(streak) / 10
   elif x < y:
     if int(streak) == 0:
       if int(score) == 0:
-        return 0
+        st.session_state.score = 0
       else:
-        return x - y
+        st.session_state.score = x - y
     else:
-      return (x - y) / int(streak) / 10
+      st.session_state.score = (x - y) / int(streak) / 10
   elif x == y:
-    return 0
+    st.session_state.score = 0
 
 st.title("testing page")
