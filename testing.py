@@ -1,8 +1,7 @@
 import streamlit as st
 
-def inc_streak(x):
-  x = True
-  return x
+def inc_streak():
+  st.session_state.streak = True
 
 def inc_score(x, y, streak, score):
   if x > y:
