@@ -11,6 +11,8 @@ else:
   st.write("View test data, including tests and areas to improve on, here.")
 
 
+s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
+
 with st.sidebar:
     if st.session_state.get("guest_mode") and st.session_state.get("guest_login_time"):
         start_time = st.session_state.guest_login_time
