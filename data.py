@@ -10,8 +10,12 @@ if not st.user.is_logged_in:
 else:
   st.write("View test data, including tests and areas to improve on, here.")
 
+if st.user.is_loggd_in:
+  s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
+  with s1:
 
-s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
+  with s2:
+    
 
 with st.sidebar:
     if st.session_state.get("guest_mode") and st.session_state.get("guest_login_time"):
