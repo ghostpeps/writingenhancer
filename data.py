@@ -13,7 +13,12 @@ else:
 if st.user.is_loggd_in:
   s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
   with s1:
-
+    if st.session_state.streak: # add reset streak and incomplete streak for home.py
+            with open(f"{st.user.email}streak.txt", "r+") as f:
+                f.seek(7)
+                z = f.read()
+            st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#fa3002'}")
+            st.session_state.streak = False
   with s2:
     @st.dialog("Test Score", dismissible=True)
             def show_popup_message(message_text):
