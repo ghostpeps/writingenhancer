@@ -1,5 +1,4 @@
 import streamlit as st
-import math
 
 def inc_streak(x):
   x = True
@@ -10,7 +9,7 @@ def inc_score(x, y, streak, score):
     if int(streak) == 0:
       return x - y
     else:
-      return (x - y) * math.floor(int(streak) / 2)
+      return (x - y) * int(streak) / 10
   elif x < y:
     if int(streak) == 0:
       if int(score) == 0:
@@ -18,7 +17,7 @@ def inc_score(x, y, streak, score):
       else:
         return x - y
     else:
-      return (x - y) / math.ceil(int(streak) / 2) 
+      return (x - y) / int(streak) / 10
   elif x == y:
     return 0
 
