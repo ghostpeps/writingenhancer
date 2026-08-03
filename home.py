@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 col1, col2 = st.columns(2)
 
 with col1:
-    st.title("Home")
+    st.spinner("Home")
     
     if st.user.is_logged_in:
         st.write(f"Welcome, {st.user.name}")
