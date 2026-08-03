@@ -1,7 +1,15 @@
 import streamlit as st
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 col1, col2 = st.columns(2)
+
+user_tz_str = st.context.timezone
+
+if user_tz_str:
+    st.write(f"Your timezone: {user_tz_str}")
+    tz_obj = pytz.timezone(user_tz_str)
+    local_time = datetime.now(timezone.utc).astimezone(tz_obj)
+    st.metric("Your local time", local_time)
 
 with col1:
     st.title("Home")
