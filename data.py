@@ -15,7 +15,6 @@ if st.user.is_loggd_in:
   with s1:
     if st.session_state.streak: # add reset streak and incomplete streak for home.py
             with open(f"{st.user.email}streak.txt", "r+") as f:
-                f.seek(7)
                 z = f.read()
             st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#fa3002'}")
             st.session_state.streak = False
@@ -24,7 +23,6 @@ if st.user.is_loggd_in:
     def show_popup_message(message_text):
         st.write(message_text)
     with open(f"{st.user.email}score.txt", "r+") as f:
-        f.seek(6)
         w = f.read()
     if st.button(f"{w}", type="tertiary", use_container_width=True):
         show_popup_message("The test score is used to define your overall improvements. The more positive feedback you receive, the higher your score goes, and the more negative feedback you receive, the lower your score goes. Your streak also affects your test score. If your streak is higher, your score will increase faster, while reducing the amount you decrease when given negative feedback. Complete a test every day (including diagnostics) to increase your streak. If you forget to test for just one day, your streak restarts at 0.")
