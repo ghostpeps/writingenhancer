@@ -73,6 +73,7 @@ if st.user.is_logged_in:
                 w = int(f.read()) + st.session_state.score
                 f.truncate()
                 f.write(f"{w}")
+                st.session_state.score = 0
             if st.button(f"{w}", type="tertiary", use_container_width=True):
                 show_popup_message("The test score is used to define your overall improvements. The more positive feedback you receive, the higher your score goes, and the more negative feedback you receive, the lower your score goes. Your streak also affects your test score. If your streak is higher, your score will increase faster, while reducing the amount you decrease when given negative feedback. Complete a test every day (including diagnostics) to increase your streak. If you forget to test for just one day, your streak restarts at 0.")
 with st.sidebar:
