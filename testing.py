@@ -8,7 +8,7 @@ def inc_score(x, y, streak, score):
     if int(streak) == 0:
       st.session_state.score =  x - y
     else:
-      st.session_state.score = (x - y) * int(streak) / 10
+      st.session_state.score = (x - y) * (int(streak) / 10)
   elif x < y:
     if int(streak) == 0:
       if int(score) == 0:
@@ -16,7 +16,7 @@ def inc_score(x, y, streak, score):
       else:
         st.session_state.score = x - y
     else:
-      st.session_state.score = (x - y) / int(streak) / 10
+      st.session_state.score = (x - y) / (int(streak) / 10)
   elif x == y:
     st.session_state.score = 0
 
