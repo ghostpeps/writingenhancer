@@ -53,7 +53,12 @@ with col2:
                     st.session_state.selected_grade = int(grade)
                     st.write("Grade " + str(st.session_state.selected_grade))
                     st.rerun()
-
+def increaser(streak, score):
+    s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
+    with s1:
+        
+        st.markdown(f":material/mode_heat: {}")
+if st.user.is_logged_in
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
         st.markdown(":material/mode_heat: 0") #add one to streak every time submit button is clicked in test. add html to make streak logo and text. save to file
