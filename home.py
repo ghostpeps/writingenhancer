@@ -58,9 +58,7 @@ if st.user.is_logged_in:
     with s1:
         if st.session_state.streak: # add reset streak and incomplete streak
             with open(f"{st.user.email}streak.txt", "r+") as f:
-                f.seek(7)
                 z = int(f.read()) + 1
-                f.truncate()
                 f.write(f"{z}")
             st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#fa3002'}")
             st.session_state.streak = False
@@ -69,9 +67,7 @@ if st.user.is_logged_in:
         def show_popup_message(message_text):
             st.write(message_text)
         with open(f"{st.user.email}score.txt", "r+") as f:
-            f.seek(6)
             w = int(f.read()) + st.session_state.score
-            f.truncate()
             f.write(f"{w}")
             st.session_state.score = 0
         if st.button(f"{w}", type="tertiary", use_container_width=True):
