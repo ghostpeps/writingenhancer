@@ -5,12 +5,12 @@ import pytz
 col1, col2 = st.columns(2)
 
 user_tz_str = st.context.timezone
-
+    
 if user_tz_str:
     st.write(f"Your timezone: {user_tz_str}")
     tz_obj = pytz.timezone(user_tz_str)
     local_time = datetime.now(timezone.utc).astimezone(tz_obj)
-    formatted_time = local_time.strftime("%I:%M %p")
+    formatted_time = local_time.strftime("%H:%M:%S")
     st.metric("Your local time", formatted_time)
 
 with col1:
