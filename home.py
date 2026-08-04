@@ -7,11 +7,16 @@ col1, col2 = st.columns(2)
 user_tz_str = st.context.timezone
     
 if user_tz_str:
-    st.write(f"Your timezone: {user_tz_str}")
     tz_obj = pytz.timezone(user_tz_str)
     local_time = datetime.now(timezone.utc).astimezone(tz_obj)
-    formatted_time = local_time.strftime("%H:%M:%S")
-    st.metric("Your local time", formatted_time)
+    formatted_time = local_time.strftime("%H:%M:%S.%f")
+    if formatted_time == "00:00:00.000000":
+        with open(f"{st.user.email}strk.txt", "r+") as f:
+            if f.read() == "n":
+                with open(f"{st.user.email}streak.txt", "r+") as r:
+                    r.write("0")
+            elif f.read() == "y":
+                f.write("n")
 
 with col1:
     st.title("Home")
