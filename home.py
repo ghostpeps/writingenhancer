@@ -11,6 +11,18 @@ if user_tz_str:
     local_time = datetime.now(timezone.utc).astimezone(tz_obj)
     formatted_time = local_time.strftime("%H:%M:%S.%f")
     if formatted_time == "00:00:00.000000":
+        try:
+            with open(f"{st.user.email}strk.txt", "r") as f:
+                pass
+        except FileNotFoundError:
+            with open(f"{st.user.email}strk.txt", "w") as f:
+                pass
+        try:
+            with open(f"{st.user.email}streak.txt", "r") as f:
+                pass
+        except FileNotFoundError:
+            with open(f"{st.user.email}streak.txt", "w") as r:
+                pass
         with open(f"{st.user.email}strk.txt", "r+") as f:
             if f.read() == "n":
                 with open(f"{st.user.email}streak.txt", "r+") as r:
@@ -72,8 +84,13 @@ if st.user.is_logged_in:
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
         if st.session_state.streak: # add reset streak and incomplete streak
-            with open(f"{st.user.email}streak.txt", "r+") as f:
-                z = int(f.read()) + 1
+            try:
+                with open(f"{st.user.email}streak.txt", "r") as f:
+                    z = int(f.read()) + 1
+            except FileNotFoundError:
+                with open(f"{st.user.email}streak.txt", "w") as f:
+                    z = 0
+            with open(f"{st.user.email}streak.txt", "w") as f:
                 f.write(f"{z}")
             st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#fa3002'}")
             st.session_state.streak = False
@@ -81,8 +98,13 @@ if st.user.is_logged_in:
         @st.dialog("Test Score", dismissible=True)
         def show_popup_message(message_text):
             st.write(message_text)
-        with open(f"{st.user.email}score.txt", "r+") as f:
-            w = int(f.read()) + st.session_state.score
+        try:
+            with open(f"{st.user.email}score.txt", "r") as f:
+                w = int(f.read()) + st.session_state.score
+        except FileNotFoundError:
+            with open(f"{st.user.email}score.txt", "w") as f:
+                w = 0
+        with open(f"{st.user.email}score.txt", "w") as f:
             f.write(f"{w}")
             st.session_state.score = 0
         if st.button(f"{w}", type="tertiary", use_container_width=True):
