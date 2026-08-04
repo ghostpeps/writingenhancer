@@ -50,4 +50,4 @@ with st.sidebar:
             st.logout()
         else:
             st.rerun()
-st.rerun()
+
