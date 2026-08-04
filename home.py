@@ -122,7 +122,6 @@ with st.sidebar:
     if st.button("Log Out", icon=":material/logout:", use_container_width=True):
         st.session_state.guest_mode = False
         st.session_state.guest_login_time = None
-        
         if st.user.is_logged_in:
             st.logout()
         else:
