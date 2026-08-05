@@ -39,4 +39,15 @@ def inc_score(x, y):
     elif x == y:
       f.write(w)
 
+  def d_complete():
+    try:
+      with open(f"{st.user.email}d.txt", "r") as f:
+        z = f.read()
+    except FileNotFoundError:
+      with open(f"{st.user.email}d.txt", "w") as f:
+        f.write("0")
+        z = "0"
+    try:
+      with open(f"{st.user.email}grade.txt", "r") as f:
+        
 st.title("testing page")
