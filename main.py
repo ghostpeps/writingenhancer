@@ -30,36 +30,20 @@ def manual_logout():
 if st.session_state.guest_mode and st.session_state.guest_login_time:
     if datetime.now() > (st.session_state.guest_login_time + timedelta(hours=24)):
         manual_logout()
-#if st.session_state.guest_mode:
-    #st.logo("logo.png")
-#elif st.user.is_logged_in:
-    #st.logo("logo.png", link="https://writingtutor.streamlit.app")
-st.markdown(
-    """
-    <style>
-    /* target standard buttons inside the sidebar */
-    div[data-testid="stSidebar"] button[kind="secondary"] {
-        background: transparent;
-        border: none;
-        padding: 0;
-        box-shadow: none;
-    }
-    /* eliminate hover background shading */
-    div[data-testid="stSidebar"] button[kind="secondary"]:hover {
-        background: transparent;
-        color: inherit;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-def start_game():
-    st.session_state.game = True
-
-with st.sidebar:
-    if st.button("🎮 **My Game Logo**", on_click=start_game):
-        st.rerun()
+if st.user.is_logged_in:
+    try:
+        with open(f"{st.user.email}d.txt", "r") as f:
+            a = f.read()
+    except FileNotFoundError:
+        with open(f"{st.user.email}d.txt", "w") as f:
+            f.write("0")
+            a = "0"
+if st.session_state.guest_mode:
+    st.logo("logo.png")
+elif st.user.is_logged_in and a == "100":
+    st.logo("logo.png", link="https://writingtutor.streamlit.app")
+elif st.user.is_logged_in:
+    st.logo("logo.png")
 
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
