@@ -22,7 +22,7 @@ if user_tz_str:
                 pass
         except FileNotFoundError:
             with open(f"{st.user.email}streak.txt", "w") as r:
-                pass
+                r.write("0")
         with open(f"{st.user.email}strk.txt", "r+") as f:
             if f.read() == "n":
                 with open(f"{st.user.email}streak.txt", "r+") as r:
