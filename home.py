@@ -87,7 +87,7 @@ if st.user.is_logged_in:
                 v = "n"
         try:
             with open(f"{st.user.email}streak.txt", "r") as f:
-                u == f.read()
+                u = f.read()
         except FileNotFoundError:
             with open(f"{st.user.email}streak.txt", "w") as f:
                 f.write("0")
