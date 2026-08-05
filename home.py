@@ -8,6 +8,8 @@ user_tz_str = st.context.timezone
 
 with open(f"{st.user.email}streak.txt", "w") as f:
     f.write("100")
+with opne(f"{st.user.email}strk.txt", "w") as f:
+    f.write("y")
 if user_tz_str:
     tz_obj = pytz.timezone(user_tz_str)
     local_time = datetime.now(timezone.utc).astimezone(tz_obj)
