@@ -13,7 +13,21 @@ else:
 if st.user.is_logged_in:
   s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
   with s1:
-    if st.session_state.streak: # add reset streak and incomplete streak for home.py
+    try:
+        with open(f"{st.user.email}strk.txt", "r") as f:
+            v = f.read()
+    except FileNotFoundError:
+        with open(f"{st.user.email}strk.txt", "w") as f:
+            f.write("n")
+            v = "n"
+    try:
+        with open(f"{st.user.email}streak.txt", "r") as f:
+            u = f.read()
+    except FileNotFoundError:
+        with open(f"{st.user.email}streak.txt", "w") as f:
+            f.write("0")
+            u = "0"
+    if st.session_state.streak:
       with open(f"{st.user.email}streak.txt", "r+") as f:
           z = f.read()
       st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#fa3002'}")
