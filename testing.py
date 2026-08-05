@@ -25,18 +25,18 @@ def inc_score(x, y):
   with open(f"{st.user.email}score.txt", "w") as f:
     if x > y:
       if int(z) == 0:
-        f.write(str(x-y))
+        f.write(str(int(w)+(x-y)))
       else:
-        f.write(str((x - y) * (int(z) / 10)))
+        f.write(str(int(w)+((x - y) * (int(z) / 10))))
     elif x < y:
       if int(z) == 0:
         if int(w) == 0:
-          f.write("0")
+          f.write(w)
         else:
-          f.write(str(x-y))
+          f.write(str(int(w)+(x-y)))
       else:
-        f.write(str((x - y) / (int(z) / 10)))
+        f.write(str(int(w)+((x - y) / (int(z) / 10))))
     elif x == y:
-      f.write("0")
+      f.write(w)
 
 st.title("testing page")
