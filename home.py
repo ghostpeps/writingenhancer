@@ -78,7 +78,21 @@ with col2:
 if st.user.is_logged_in:
     s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
     with s1:
-        if st.session_state.streak: # add reset streak and incomplete streak
+        try:
+            with open(f"{st.user.email}strk.txt", "r") as f:
+                v = f.read()
+        except FileNotFoundError:
+            with open(f"{st.user.email}strk.txt", "w") as f:
+                f.write("n")
+                v = "n"
+        try:
+            with open(f"{st.user.email}streak.txt", "r") as f:
+                u == f.read()
+        except FileNotFoundError:
+            with open(f"{st.user.email}streak.txt", "w") as f:
+                f.write("0")
+                u = "0"
+        if st.session_state.streak:
             try:
                 with open(f"{st.user.email}streak.txt", "r") as f:
                     z = int(f.read()) + 1
@@ -89,6 +103,16 @@ if st.user.is_logged_in:
                 f.write(f"{z}")
             st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#fa3002'}")
             st.session_state.streak = False
+        elif v == "n":
+            try:
+                with open(f"{st.user.email}streak.txt", "r") as f:
+                    z = f.read()
+            except FileNotFoundError:
+                with open(f"{st.user.email}streak.txt", "w") as f:
+                    z = 0
+            st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#f0ab18'}")
+        elif u == "0":
+            st.markdown(":color[:material/mode_heat: 0]{foreground='#827f6c'}")
     with s2:
         @st.dialog("Test Score", dismissible=True)
         def show_popup_message(message_text):
