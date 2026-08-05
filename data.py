@@ -2,7 +2,10 @@ import streamlit as st
 from datetime import datetime, timedelta
 
 if st.user.is_logged_in:
-  st.title(f"{st.user.given_name}'s Test Data")
+  if st.user.given_name[-1] == "s":
+    st.title(f"{st.user.given_name}' Test Data")
+  else:
+    st.title(f"{st.user.given_name}'s Test Data")
 else:
   st.title("Test Data")
 if not st.user.is_logged_in:
