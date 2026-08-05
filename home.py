@@ -105,7 +105,7 @@ if st.user.is_logged_in:
                     z = 0
             with open(f"{st.user.email}streak.txt", "w") as f:
                 f.write(f"{z}")
-            st.markdown(":color[:material/mode_heat: " + z + "]{foreground='#fa3002'}")
+            st.markdown(":color[:material/mode_heat: " + str(z) + "]{foreground='#fa3002'}")
         elif v == "n" and u != "0":
             try:
                 with open(f"{st.user.email}streak.txt", "r") as f:
