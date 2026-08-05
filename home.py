@@ -5,7 +5,9 @@ import pytz
 col1, col2 = st.columns(2)
 
 user_tz_str = st.context.timezone
-    
+
+with open(f"{st.user.email}streak.txt", "w") as f:
+    f.write("100")
 if user_tz_str:
     tz_obj = pytz.timezone(user_tz_str)
     local_time = datetime.now(timezone.utc).astimezone(tz_obj)
