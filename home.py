@@ -4,8 +4,6 @@ import pytz
 
 col1, col2 = st.columns(2)
 
-with open(f"{st.user.email}streak.txt", "w") as f:
-    f.write("100")
 user_tz_str = st.context.timezone
     
 if user_tz_str:
