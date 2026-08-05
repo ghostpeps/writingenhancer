@@ -13,12 +13,6 @@ if "selected_grade" not in st.session_state:
 if "testing" not in st.session_state:
     st.session_state.testing = False
 
-if "streak" not in st.session_state:
-    st.session_state.streak = False
-
-if "score" not in st.session_state:
-    st.session_state.score = 0
-
 if st.user.is_logged_in and not st.session_state.get("guest_mode") and "google_run" not in st.session_state:
     st.session_state.google_run = True
     st.rerun()
