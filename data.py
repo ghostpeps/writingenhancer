@@ -32,6 +32,16 @@ if st.user.is_logged_in:
           z = f.read()
       st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#fa3002'}")
       st.session_state.streak = False
+    elif v == "n" and u != "0":
+        try:
+            with open(f"{st.user.email}streak.txt", "r") as f:
+                z = f.read()
+        except FileNotFoundError:
+            with open(f"{st.user.email}streak.txt", "w") as f:
+                z = 0
+        st.markdown(":color[:material/mode_heat: " + z + "]{foreground='#f0ab18'}")
+    elif u == "0":
+        st.markdown(":color[:material/mode_heat: 0]{foreground='#827f6c'}")
   with s2:
     @st.dialog("Test Score", dismissible=True)
     def show_popup_message(message_text):
