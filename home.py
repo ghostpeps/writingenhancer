@@ -101,7 +101,7 @@ if st.user.is_logged_in:
                     z = 0
             with open(f"{st.user.email}streak.txt", "w") as f:
                 f.write(f"{z}")
-            st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#fa3002'}")
+            st.markdown(":color[:material/mode_heat: " + z + "]{foreground='#fa3002'}")
             st.session_state.streak = False
         elif v == "n":
             try:
@@ -110,7 +110,7 @@ if st.user.is_logged_in:
             except FileNotFoundError:
                 with open(f"{st.user.email}streak.txt", "w") as f:
                     z = 0
-            st.markdown(":color[:material/mode_heat:" + z + "]{foreground='#f0ab18'}")
+            st.markdown(":color[:material/mode_heat: " + z + "]{foreground='#f0ab18'}")
         elif u == "0":
             st.markdown(":color[:material/mode_heat: 0]{foreground='#827f6c'}")
     with s2:
