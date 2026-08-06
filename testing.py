@@ -39,15 +39,16 @@ def inc_score(x, y):
     elif x == y:
       f.write(w)
 
-  def d_complete():
-    try:
-      with open(f"{st.user.email}d.txt", "r") as f:
-        z = f.read()
-    except FileNotFoundError:
-      with open(f"{st.user.email}d.txt", "w") as f:
-        f.write("0")
-        z = "0"
-    try:
-      with open(f"{st.user.email}grade.txt", "r") as f:
-        
+def d_complete(): # add percentage for different grades
+  try:
+    with open(f"{st.user.email}d.txt", "r") as f:
+      z = f.read()
+  except FileNotFoundError:
+    with open(f"{st.user.email}d.txt", "w") as f:
+      f.write("0")
+      z = "0"
+  with open(f"{st.user.email}grade.txt", "r") as f:
+    grade = f.read().rstrip()
+    if grade:
+      g = grade[-1]
 st.title("testing page")
