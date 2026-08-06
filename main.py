@@ -42,7 +42,7 @@ if st.user.is_logged_in:
 if st.user.is_logged_in and a == "100":
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
-        st.Page("data.py", title="Data", icon=":material/bar_chart:")
+        st.Page("data.py", title="Data", icon=":material/bar_chart:"),
         st.Page("games.py", title="Games", icon=":material/stadia_controller:")
     ]
 if st.user.is_logged_in or st.session_state.guest_mode:
