@@ -13,8 +13,6 @@ if "selected_grade" not in st.session_state:
 if "testing" not in st.session_state:
     st.session_state.testing = False
 
-if "game" not in st.session_state:
-    st.session_state.game = False
 
 if st.user.is_logged_in and not st.session_state.get("guest_mode") and "google_run" not in st.session_state:
     st.session_state.google_run = True
@@ -30,6 +28,9 @@ def manual_logout():
 if st.session_state.guest_mode and st.session_state.guest_login_time:
     if datetime.now() > (st.session_state.guest_login_time + timedelta(hours=24)):
         manual_logout()
+
+st.logo("logo.png")
+
 if st.user.is_logged_in:
     try:
         with open(f"{st.user.email}d.txt", "r") as f:
@@ -38,13 +39,12 @@ if st.user.is_logged_in:
         with open(f"{st.user.email}d.txt", "w") as f:
             f.write("0")
             a = "0"
-if st.session_state.guest_mode:
-    st.logo("logo.png")
-elif st.user.is_logged_in and a == "100":
-    st.logo("logo.png", link="https://writingtutor.streamlit.app")
-elif st.user.is_logged_in:
-    st.logo("logo.png")
-
+if st.user.is_logged_in and a == "100":
+    pages = [
+        st.Page("home.py", title="Home", icon=":material/home:", default=True),
+        st.Page("data.py", title="Data", icon=":material/bar_chart:")
+        st.Page("games.py", title="Games", icon=":material/stadia_controller:")
+    ]
 if st.user.is_logged_in or st.session_state.guest_mode:
     pages = [
         st.Page("home.py", title="Home", icon=":material/home:", default=True),
@@ -53,10 +53,6 @@ if st.user.is_logged_in or st.session_state.guest_mode:
 elif st.session_state.testing:
     pages = [
         st.Page("testing.py", title="Test", icon=":material/assignment:", default=True)
-    ]
-elif st.session_state.game:
-    pages = [
-        st.Page("games.py", title="Games", icon=":material/stadia_controller:")
     ]
 elif not st.user.is_logged_in or not st.session_state.guest_mode:
     pages = [
