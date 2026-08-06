@@ -12,7 +12,7 @@ if not st.user.is_logged_in:
   st.write("View test data from today, including areas to improve on, here.")
 else:
   st.write("View test data, including tests and areas to improve on, here.")
-
+st.page_link("home.py", label="Back to Home", icon="🏠")
 if st.user.is_logged_in:
   s1, s2 = st.sidebar.columns(2, vertical_alignment="center")
   with s1:
