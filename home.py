@@ -30,60 +30,60 @@ if user_tz_str:
                     r.write("0")
             elif f.read() == "y":
                 f.write("n")
-
-progress_value = 75  
-
-# 2. Calculate donut slices for a 270-degree arc open at the bottom
-filled_part = (progress_value / 100) * 250
-empty_part = 250 - filled_part
-hidden_bottom = 110
-
-# 3. Create the progress bar using a donut chart
-fig = go.Figure(
-    data=[
-        go.Pie(
-            values=[filled_part, empty_part, hidden_bottom],
-            # 135 degrees puts the 90-degree hidden slice exactly at the bottom
-            rotation=237, 
-            direction="clockwise",
-            hole=0.8,
-            marker=dict(
-                colors=["#FF4B4B", "#E5E5E5", "rgba(0,0,0,0)"]  # Red, Gray, Transparent
+if st.user.is_logged_in:
+    try:
+        with open(f"{st.user.email}d.txt", "r") as f:
+            progress_value = int(f.read())
+    except FileNotFoundError:
+        with open(f"{st.user.email}d.txt", "w") as f:
+            f.write("0")
+            progress_value = 0
+    
+    filled_part = (progress_value / 100) * 250
+    empty_part = 250 - filled_part
+    hidden_bottom = 110
+    fig = go.Figure(
+        data=[
+            go.Pie(
+                values=[filled_part, empty_part, hidden_bottom],
+                rotation=237, 
+                direction="clockwise",
+                hole=0.8,
+                marker=dict(
+                    colors=["#FF4B4B", "#E5E5E5", "rgba(0,0,0,0)"]
+                ),
+                hoverinfo="skip",
+                textinfo="none",
+                sort=False,
+            )
+        ]
+    )
+    
+    fig.update_layout(
+        annotations=[
+            dict(
+                text=f"{progress_value}%",
+                x=0.5,
+                y=0.5,
+                font_size=42,
+                font_weight="bold",
+                showarrow=False,
             ),
-            hoverinfo="skip",
-            textinfo="none",
-            sort=False,
-        )
-    ]
-)
-
-# 4. Add the center text (percentage number)
-fig.update_layout(
-    annotations=[
-        dict(
-            text=f"{progress_value}%",
-            x=0.5,
-            y=0.5,  # Centered inside the donut ring
-            font_size=42,
-            font_weight="bold",
-            showarrow=False,
-        ),
-        dict(
-            text="Progress",
-            x=0.5,
-            y=0.3,  # Sitting neatly right above the bottom opening
-            font_size=14,
-            font_color="gray",
-            showarrow=False,
-        )
-    ],
-    height=320,
-    margin=dict(t=10, b=10, r=10, l=10),
-    showlegend=False,
-)
-
-# 5. Display in Streamlit
-st.plotly_chart(fig, use_container_width=True)
+            dict(
+                text="Diagnostic Progress",
+                x=0.5,
+                y=0.3,
+                font_size=14,
+                font_color="gray",
+                showarrow=False,
+            )
+        ],
+        height=320,
+        margin=dict(t=10, b=10, r=10, l=10),
+        showlegend=False,
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
 
 with col1:
     st.title("Home")
