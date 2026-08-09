@@ -34,9 +34,9 @@ if user_tz_str:
 progress_value = 75  
 
 # 2. Calculate donut slices for a 270-degree arc open at the bottom
-filled_part = (progress_value / 100) * 270
-empty_part = 270 - filled_part
-hidden_bottom = 90
+filled_part = (progress_value / 100) * 250
+empty_part = 250 - filled_part
+hidden_bottom = 110
 
 # 3. Create the progress bar using a donut chart
 fig = go.Figure(
