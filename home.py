@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import datetime, timedelta, timezone
 import pytz
+import plotly.graph_objects as go
 
 col1, col2 = st.columns(2)
 
@@ -29,6 +30,45 @@ if user_tz_str:
                     r.write("0")
             elif f.read() == "y":
                 f.write("n")
+
+progress_value = 75  # Change this value (0-100) to update progress
+
+# 2. Build the 270-degree gauge
+fig = go.Figure(
+    go.Indicator(
+        mode="gauge+number",
+        value=progress_value,
+        title={"text": "Task Progress", "font": {"size": 20}},
+        number={"suffix": "%", "font": {"size": 36}},
+        gauge={
+            "axis": {
+                "range": [0, 100],
+                "tickwidth": 1,
+                "tickcolor": "gray",
+                # Map 0% to -225° and 100% to 45° to leave the bottom 90° open
+                "shape": "angular",
+            },
+            "bar": {"color": "#FF4B4B", "thickness": 1},
+            "bgcolor": "#E5E5E5",
+            "borderwidth": 0,
+        },
+    )
+)
+
+# 3. Configure the gauge angles for a 270-degree arc open at the bottom
+fig.update_layout(
+    polar=dict(
+        angularaxis=dict(
+            rotation=135,  # Top-center adjustment
+            direction="clockwise",
+        )
+    ),
+    height=350,
+    margin=dict(t=50, b=10, r=30, l=30),
+)
+
+# 4. Display in Streamlit
+st.plotly_chart(fig, use_container_width=True)
 
 with col1:
     st.title("Home")
