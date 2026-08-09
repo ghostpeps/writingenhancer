@@ -34,8 +34,6 @@ if user_tz_str:
 progress_value = 75  
 
 # 2. Calculate donut slices for a 270-degree arc open at the bottom
-# A full circle is 360 degrees. 270 degrees represents our gauge.
-# The bottom 90 degrees is hidden/transparent.
 filled_part = (progress_value / 100) * 270
 empty_part = 270 - filled_part
 hidden_bottom = 90
@@ -45,8 +43,8 @@ fig = go.Figure(
     data=[
         go.Pie(
             values=[filled_part, empty_part, hidden_bottom],
-            # Rotate chart so the 90-degree hidden gap sits perfectly at the bottom
-            rotation=-135, 
+            # 135 degrees puts the 90-degree hidden slice exactly at the bottom
+            rotation=135, 
             hole=0.8,
             marker=dict(
                 colors=["#FF4B4B", "#E5E5E5", "rgba(0,0,0,0)"]  # Red, Gray, Transparent
@@ -64,21 +62,21 @@ fig.update_layout(
         dict(
             text=f"{progress_value}%",
             x=0.5,
-            y=0.45,  # Slightly lower than exact center to look visually balanced
+            y=0.5,  # Centered inside the donut ring
             font_size=42,
             font_weight="bold",
             showarrow=False,
         ),
         dict(
-            text="Task Progress",
+            text="Progress",
             x=0.5,
-            y=0.25,
+            y=0.3,  # Sitting neatly right above the bottom opening
             font_size=14,
             font_color="gray",
             showarrow=False,
         )
     ],
-    height=350,
+    height=320,
     margin=dict(t=10, b=10, r=10, l=10),
     showlegend=False,
 )
