@@ -1,3 +1,4 @@
 authlib
 httpx
 pytz
+plotly
