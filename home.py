@@ -31,43 +31,59 @@ if user_tz_str:
             elif f.read() == "y":
                 f.write("n")
 
-progress_value = 75  # Change this value (0-100) to update progress
+progress_value = 75  
 
-# 2. Build the 270-degree gauge
+# 2. Calculate donut slices for a 270-degree arc open at the bottom
+# A full circle is 360 degrees. 270 degrees represents our gauge.
+# The bottom 90 degrees is hidden/transparent.
+filled_part = (progress_value / 100) * 270
+empty_part = 270 - filled_part
+hidden_bottom = 90
+
+# 3. Create the progress bar using a donut chart
 fig = go.Figure(
-    go.Indicator(
-        mode="gauge+number",
-        value=progress_value,
-        title={"text": "Task Progress", "font": {"size": 20}},
-        number={"suffix": "%", "font": {"size": 36}},
-        gauge={
-            "axis": {
-                "range": [0, 100],
-                "tickwidth": 1,
-                "tickcolor": "gray",
-                # Map 0% to -225° and 100% to 45° to leave the bottom 90° open
-                "shape": "angular",
-            },
-            "bar": {"color": "#FF4B4B", "thickness": 1},
-            "bgcolor": "#E5E5E5",
-            "borderwidth": 0,
-        },
-    )
-)
-
-# 3. Configure the gauge angles for a 270-degree arc open at the bottom
-fig.update_layout(
-    polar=dict(
-        angularaxis=dict(
-            rotation=135,  # Top-center adjustment
-            direction="clockwise",
+    data=[
+        go.Pie(
+            values=[filled_part, empty_part, hidden_bottom],
+            # Rotate chart so the 90-degree hidden gap sits perfectly at the bottom
+            rotation=-135, 
+            hole=0.8,
+            marker=dict(
+                colors=["#FF4B4B", "#E5E5E5", "rgba(0,0,0,0)"]  # Red, Gray, Transparent
+            ),
+            hoverinfo="skip",
+            textinfo="none",
+            sort=False,
         )
-    ),
-    height=350,
-    margin=dict(t=50, b=10, r=30, l=30),
+    ]
 )
 
-# 4. Display in Streamlit
+# 4. Add the center text (percentage number)
+fig.update_layout(
+    annotations=[
+        dict(
+            text=f"{progress_value}%",
+            x=0.5,
+            y=0.45,  # Slightly lower than exact center to look visually balanced
+            font_size=42,
+            font_weight="bold",
+            showarrow=False,
+        ),
+        dict(
+            text="Task Progress",
+            x=0.5,
+            y=0.25,
+            font_size=14,
+            font_color="gray",
+            showarrow=False,
+        )
+    ],
+    height=350,
+    margin=dict(t=10, b=10, r=10, l=10),
+    showlegend=False,
+)
+
+# 5. Display in Streamlit
 st.plotly_chart(fig, use_container_width=True)
 
 with col1:
