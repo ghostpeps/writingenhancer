@@ -44,7 +44,7 @@ fig = go.Figure(
         go.Pie(
             values=[filled_part, empty_part, hidden_bottom],
             # 135 degrees puts the 90-degree hidden slice exactly at the bottom
-            rotation=-300, 
+            rotation=250, 
             direction="clockwise",
             hole=0.8,
             marker=dict(
