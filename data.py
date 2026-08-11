@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime, timedelta
+import plotly.graph_objects as go
 
 if st.user.is_logged_in:
   if st.user.given_name[-1] == "s":
