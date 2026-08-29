@@ -2,3 +2,4 @@ authlib
 httpx
 pytz
 plotly
+google-genai
