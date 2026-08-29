@@ -4,9 +4,6 @@ from datetime import datetime, timedelta
 if "guest_mode" not in st.session_state:
     st.session_state.guest_mode = False
 
-if "guest_login_time" not in st.session_state:
-    st.session_state.guest_login_time = None
-
 if "selected_grade" not in st.session_state:
     st.session_state.selected_grade = False
 
