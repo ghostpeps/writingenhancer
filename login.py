@@ -10,8 +10,7 @@ with col1:
 
 with col2:
     guestbtn = st.button("Practice without an account", icon=":material/account_circle_off:", use_container_width=True)
-    st.caption("Note that by clicking this button you will be automatically logged out within 24 hours")
+    st.caption("Note: When going incognito, you won't have access to an English Score, streak, games, and more.")
     if guestbtn:
         st.session_state.guest_mode = True
-        st.session_state.guest_login_time = datetime.now()
         st.rerun()
