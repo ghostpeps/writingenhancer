@@ -1,4 +1,6 @@
 import streamlit as st
+from google import genai
+from google.genai import types
 
 def inc_streak():
   try:
@@ -7,6 +9,7 @@ def inc_streak():
   except FileNotFoundError:
     with open(f"{st.user.email}strk.txt", "w") as f:
       f.write("y")
+
 def inc_score(x, y):
   try:
     with open(f"{st.user.email}streak.txt", "r") as f:
@@ -39,7 +42,7 @@ def inc_score(x, y):
     elif x == y:
       f.write(w)
 
-def d_complete(): # add percentage for different grades
+def d_complete(): # add percentage for different grades and incognito version
   try:
     with open(f"{st.user.email}d.txt", "r") as f:
       z = f.read()
@@ -51,4 +54,19 @@ def d_complete(): # add percentage for different grades
     grade = f.read().rstrip()
     if grade:
       g = grade[-1]
+
+def ai_checker():
+  if st.user.is_logged_in:
+    with open(f"{st.user.email}grade.txt", "r") as f:
+      grade = f.read().rstrip()
+    if grade:
+      g = grade[-1]
+      
+    gemini_api_key = st.secrets["GEMINI_API_KEY"]
+    client = genai.Client(api_key=gemini_api_key)
+    tutor_persona = (
+    f"You are a patient, encouraging writing tutor for someone in {g} grade. Do not just rewrite "
+    "the student's work. Instead, point out areas of improvement regarding structure, "
+    "tone, and clarity. Provide concrete examples of how they can improve."
+)
 st.title("testing page")
