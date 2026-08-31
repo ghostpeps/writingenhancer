@@ -97,7 +97,8 @@ def ai_checker(writing):
             response = "Error generating feedback."
             st.error(f"An error occurred: {e}. Please try again.")
   
-        return response
       elif z != "100": # add more stuff for diognostics
         pass
+        
+      return response
 st.title("testing page")
